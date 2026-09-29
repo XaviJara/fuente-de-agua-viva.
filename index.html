@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Fundación de Desarrollo Integral Fuente de Agua Viva: proyectos de acceso a agua potable mediante pozos profundos, tanques elevados, vivienda digna y fortalecimiento comunitario en Ecuador." name="description"/>
+<meta content="#0099CC" name="theme-color"/>
+<meta content="light" name="color-scheme"/>
+<title>Fundación Fuente de Agua Viva | Agua, vivienda y desarrollo comunitario</title>
+<link href="assets/logo-icon.png" rel="icon" type="image/png"/>
+<style>
+    :root{
+      --blue:#0099CC;
+      --blue-dark:#075B78;
+      --blue-deep:#073B4C;
+      --blue-soft:#EAF8FC;
+      --green:#3FA54A;
+      --green-dark:#2F7D38;
+      --green-soft:#EDF8EE;
+      --ink:#17323D;
+      --muted:#5D7078;
+      --gray:#4F4F4F;
+      --line:#D8E7EC;
+      --surface:#F7FBFC;
+      --white:#FFFFFF;
+      --warning:#FFF6D8;
+      --shadow:0 24px 64px rgba(7,59,76,.12);
+      --shadow-sm:0 10px 28px rgba(7,59,76,.08);
+      --radius:26px;
+      --radius-sm:16px;
+      --container:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:96px}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    .container{width:min(var(--container),calc(100% - 36px));margin-inline:auto}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:900;color:var(--blue-dark);margin-bottom:14px}
+    .eyebrow::before{content:"";width:28px;height:3px;background:var(--green);border-radius:999px}
+    h1,h2,h3,h4{margin:0 0 16px;line-height:1.08;letter-spacing:-.035em}
+    h1{font-size:clamp(3.15rem,7vw,6.8rem);max-width:980px}
+    h2{font-size:clamp(2.25rem,4.5vw,4.25rem)}
+    h3{font-size:1.42rem}
+    p{margin:0 0 18px;color:var(--muted)}
+    .lead{font-size:clamp(1.08rem,1.5vw,1.28rem);color:#365B69;max-width:780px}
+    .fine{font-size:.82rem;color:#6D7E84}
+    .badge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;font-size:.78rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase}
+    .badge-blue{background:var(--blue-soft);color:var(--blue-dark)}
+    .badge-green{background:var(--green-soft);color:var(--green-dark)}
+    .badge-warning{background:var(--warning);color:#7A5A00}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:13px 20px;border-radius:999px;border:1px solid transparent;font-weight:850;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--blue);color:#fff;box-shadow:0 10px 28px rgba(0,153,204,.25)}
+    .btn-primary:hover{background:#0087B4}
+    .btn-green{background:var(--green);color:#fff;box-shadow:0 10px 28px rgba(63,165,74,.22)}
+    .btn-green:hover{background:var(--green-dark)}
+    .btn-dark{background:var(--blue-deep);color:#fff}
+    .btn-outline{border-color:var(--line);background:#fff;color:var(--ink)}
+    .btn-light{background:#fff;color:var(--blue-deep)}
+    .link{color:var(--blue-dark);font-weight:850;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+    .topbar{background:var(--blue-deep);color:#D8F4FC;font-size:.82rem}
+    .topbar .container{min-height:38px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:7px}
+    .topbar strong{color:#fff}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,231,236,.9)}
+    nav{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:240px}
+    .brand img{width:58px;height:58px;object-fit:contain;border-radius:12px;background:#fff}
+    .brand-name{font-weight:950;line-height:1.05;letter-spacing:-.025em;color:var(--blue-deep)}
+    .brand-name small{display:block;font-size:.64rem;text-transform:uppercase;letter-spacing:.10em;color:var(--muted);margin-top:5px;font-weight:800}
+    .nav-links{display:flex;align-items:center;gap:21px;font-size:.91rem;font-weight:800}
+    .nav-links>a:not(.btn):hover{color:var(--blue)}
+    .menu-btn{display:none;border:0;background:transparent;font-size:1.65rem;color:var(--blue-deep);padding:8px}
+
+    .hero{position:relative;overflow:hidden;background:linear-gradient(125deg,#EAF9FD 0%,#F9FDFB 52%,#EEF9F0 100%);padding:88px 0 76px}
+    .hero::before{content:"";position:absolute;width:760px;height:760px;border-radius:50%;right:-280px;top:-330px;background:radial-gradient(circle at 30% 35%,rgba(0,153,204,.24),rgba(0,153,204,.03) 60%,transparent 70%)}
+    .hero::after{content:"";position:absolute;width:560px;height:560px;border-radius:50%;left:-330px;bottom:-340px;background:radial-gradient(circle at 65% 35%,rgba(63,165,74,.20),transparent 67%)}
+    .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:58px;align-items:center}
+    .hero h1 span{color:var(--blue)}
+    .hero-copy>p{max-width:760px;font-size:1.16rem;color:#42636F}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .hero-proof{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+    .proof-chip{display:flex;align-items:center;gap:9px;font-weight:800;font-size:.88rem;color:#365765}
+    .proof-chip i{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--line);font-style:normal;color:var(--green)}
+    .hero-panel{position:relative;background:#fff;border:1px solid var(--line);border-radius:34px;padding:28px;box-shadow:var(--shadow)}
+    .hero-panel::before{content:"";position:absolute;inset:14px;border-radius:24px;border:1px dashed rgba(0,153,204,.22);pointer-events:none}
+    .hero-logo{position:relative;z-index:1;display:grid;place-items:center;padding:10px 14px 22px}
+    .hero-logo img{width:min(100%,390px);aspect-ratio:1/1;object-fit:contain}
+    .hero-panel-note{position:relative;z-index:1;background:var(--blue-deep);color:#fff;border-radius:20px;padding:20px}
+    .hero-panel-note p{color:#CDEAF2;margin:0;font-size:.92rem}
+    .hero-panel-note strong{display:block;font-size:1.08rem;margin-bottom:5px}
+
+    .trust-strip{position:relative;z-index:4;margin-top:-28px}
+    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow-sm);overflow:hidden}
+    .trust-item{padding:22px;display:flex;gap:13px;align-items:center;border-right:1px solid var(--line)}
+    .trust-item:last-child{border-right:0}
+    .trust-icon{width:42px;height:42px;border-radius:13px;background:var(--blue-soft);display:grid;place-items:center;color:var(--blue-dark);font-size:1.1rem;flex:0 0 auto}
+    .trust-item strong{display:block;font-size:.93rem}
+    .trust-item span{display:block;color:var(--muted);font-size:.78rem;margin-top:2px}
+
+    section{padding:104px 0}
+    .section-head{max-width:840px;margin-bottom:46px}
+    .section-head p{max-width:760px}
+    .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:66px;align-items:start}
+    .mission-card{background:var(--blue-deep);color:#fff;border-radius:var(--radius);padding:34px;box-shadow:var(--shadow)}
+    .mission-card p{color:#C7E1E9}
+    .mission-card h3{font-size:1.8rem}
+    .mission-card .divider{height:1px;background:rgba(255,255,255,.14);margin:25px 0}
+    .facts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+    .fact{border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px;background:#fff}
+    .fact b{display:block;color:var(--blue-dark);font-size:1.04rem}
+    .fact span{color:var(--muted);font-size:.85rem}
+
+    .programs{background:var(--surface)}
+    .card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .program-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 8px 22px rgba(7,59,76,.04);display:flex;flex-direction:column;min-height:310px}
+    .program-card .icon{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;background:var(--blue-soft);color:var(--blue-dark);font-weight:900;font-size:1.3rem;margin-bottom:26px}
+    .program-card:nth-child(2) .icon,.program-card:nth-child(3) .icon{background:var(--green-soft);color:var(--green-dark)}
+    .program-card p{font-size:.95rem}
+    .program-card .mini{margin-top:auto;padding-top:18px;font-size:.79rem;font-weight:800;color:var(--blue-dark)}
+
+    .method{background:linear-gradient(135deg,var(--blue-deep),#0A566C);color:#fff;overflow:hidden;position:relative}
+    .method::after{content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(255,255,255,.08);border-radius:50%;right:-170px;bottom:-260px;box-shadow:0 0 0 70px rgba(255,255,255,.025),0 0 0 140px rgba(255,255,255,.018)}
+    .method .eyebrow{color:#8EE5F2}.method .eyebrow::before{background:#87D890}
+    .method h2{max-width:820px}.method .section-head p{color:#BFDCE4}
+    .steps{position:relative;z-index:1;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:42px}
+    .step{border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.045);border-radius:20px;padding:22px 18px;min-height:230px}
+    .step .num{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--blue-deep);font-weight:950;margin-bottom:22px}
+    .step h3{font-size:1.05rem;letter-spacing:-.01em}
+    .step p{color:#C3DDE4;font-size:.86rem;margin:0}
+
+    .project{background:#fff}
+    .project-wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center}
+    .project-copy{padding-right:10px}
+    .project-alert{border:1px solid #E5D69E;background:#FFF9E8;border-radius:15px;padding:14px 16px;margin:22px 0;color:#6E5A13;font-size:.88rem;font-weight:700}
+    .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0}
+    .metric{border:1px solid var(--line);border-radius:18px;padding:17px;background:#fff}
+    .metric b{font-size:1.6rem;color:var(--blue-dark);display:block;letter-spacing:-.04em;line-height:1.05}
+    .metric span{font-size:.78rem;color:var(--muted);font-weight:750}
+    .locations{display:flex;gap:8px;flex-wrap:wrap}
+    .locations span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 11px;font-size:.78rem;font-weight:800;color:#49636D}
+    .plan-card{background:var(--surface);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-sm)}
+    .plan-card img{width:100%;aspect-ratio:1.05/1;object-fit:cover;object-position:center;background:#fff}
+    .plan-caption{padding:18px 20px;background:#fff}
+    .plan-caption strong{display:block;margin-bottom:4px}
+    .plan-caption span{font-size:.8rem;color:var(--muted)}
+    .ods-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+    .ods{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:13px;background:var(--blue-soft);font-size:.78rem;font-weight:850;color:var(--blue-dark)}
+    .ods b{font-size:1rem}
+
+    .transparency{background:var(--surface)}
+    .trans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .trans-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px}
+    .trans-card h3{font-size:1.18rem}
+    .trans-list{display:grid;gap:12px;margin-top:18px}
+    .trans-row{display:flex;justify-content:space-between;gap:18px;padding-bottom:11px;border-bottom:1px solid #ECF2F4;font-size:.88rem}
+    .trans-row:last-child{border-bottom:0;padding-bottom:0}
+    .trans-row span{color:var(--muted)}
+    .trans-row b{text-align:right;color:var(--ink)}
+    .copyline{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+    .copy-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 8px;font-size:.73rem;font-weight:850;color:var(--blue-dark)}
+    .copy-btn:hover{background:var(--blue-soft)}
+
+    .donate{background:#fff}
+    .donate-box{background:linear-gradient(135deg,#E9F8FC,#F0F9F2);border:1px solid #CDE8EF;border-radius:32px;padding:44px;display:grid;grid-template-columns:.92fr 1.08fr;gap:42px;align-items:start}
+    .amounts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
+    .amount{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:.18s ease}
+    .amount:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:#B7DAE3}
+    .amount strong{font-size:1.4rem;color:var(--blue-dark)}
+    .amount span{font-size:.78rem;color:var(--muted)}
+    .bank-box{background:var(--blue-deep);color:#fff;border-radius:24px;padding:28px;position:relative;overflow:hidden}
+    .bank-box::after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:rgba(255,255,255,.05);right:-90px;top:-90px}
+    .bank-box p{color:#CBE5EC}
+    .bank-line{display:flex;justify-content:space-between;gap:20px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:.87rem;position:relative;z-index:1}
+    .bank-line:last-of-type{border-bottom:0}
+    .bank-line span{color:#A9D1DC}
+    .bank-line b{text-align:right;color:#fff}
+    .security-note{margin-top:17px;font-size:.76rem;color:#BBDCE4;position:relative;z-index:1}
+
+    .request{background:var(--surface)}
+    .request-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:48px;align-items:start}
+    .request-aside{position:sticky;top:120px}
+    .check-list{display:grid;gap:12px;margin-top:25px}
+    .check{display:flex;gap:11px;align-items:flex-start;font-size:.92rem;color:#435F6A}
+    .check i{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:var(--green-soft);color:var(--green-dark);font-style:normal;font-weight:950;flex:0 0 auto}
+    .form-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:30px;box-shadow:var(--shadow-sm)}
+    form{display:grid;gap:16px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    label{display:grid;gap:7px;font-size:.83rem;font-weight:850;color:#37525D}
+    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);padding:12px 13px;outline:none}
+    input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,153,204,.10)}
+    textarea{min-height:126px;resize:vertical}
+    .form-card .btn{justify-self:start}
+    .status{display:none;margin-top:8px;padding:10px 12px;border-radius:11px;background:var(--green-soft);color:var(--green-dark);font-size:.83rem;font-weight:750}
+
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    details{border:1px solid var(--line);border-radius:18px;background:#fff;padding:19px 20px}
+    summary{cursor:pointer;font-weight:850;color:var(--ink)}
+    details p{margin:13px 0 0;font-size:.9rem}
+
+    .contact{background:var(--blue-deep);color:#fff}
+    .contact .eyebrow{color:#8CE6F3}.contact .eyebrow::before{background:#91DA98}
+    .contact h2{max-width:850px}
+    .contact p{color:#C3DEE6;max-width:780px}
+    .contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .contact-meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:34px;color:#AED1DB;font-size:.88rem}
+    .contact-meta a{color:#fff;font-weight:800}
+
+    footer{background:#052D3A;color:#fff;padding:56px 0 28px}
+    .footer-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:40px}
+    .footer-brand{display:flex;gap:14px;align-items:center;margin-bottom:18px}
+    .footer-brand img{width:68px;height:68px;object-fit:contain;background:#fff;border-radius:13px}
+    footer p{color:#AFCBD4;font-size:.9rem;max-width:520px}
+    footer h4{font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;color:#D5EAF0;margin-bottom:14px}
+    .footer-links{display:grid;gap:8px;color:#BBD2D9;font-size:.88rem}
+    .footer-links a:hover{color:#fff}
+    .footer-bottom{margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.10);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:#8FB3BE;font-size:.77rem}
+
+    .float-wa{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;font-weight:950;box-shadow:0 13px 30px rgba(0,0,0,.20);z-index:45;border:3px solid #fff}
+    .float-wa:hover{transform:translateY(-2px)}
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    @media(max-width:1040px){
+      .nav-links{gap:14px;font-size:.84rem}.nav-links .btn{padding-inline:14px}
+      .card-grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:repeat(3,1fr)}
+      .trans-grid{grid-template-columns:1fr 1fr}.trans-card:last-child{grid-column:1/3}
+    }
+    @media(max-width:860px){
+      .topbar .container{justify-content:center;text-align:center}
+      .menu-btn{display:block}.nav-links{display:none;position:absolute;left:0;right:0;top:82px;background:#fff;border-bottom:1px solid var(--line);padding:22px 24px;flex-direction:column;align-items:stretch;gap:14px}.nav-links.open{display:flex}.nav-links .btn{width:100%}
+      .hero-grid,.about-grid,.project-wrap,.donate-box,.request-grid{grid-template-columns:1fr}
+      .hero{padding-top:64px}.hero-panel{max-width:620px}.trust-grid{grid-template-columns:1fr 1fr}.trust-item:nth-child(2){border-right:0}.trust-item:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .project-copy{padding-right:0}.request-aside{position:static}.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/3}
+    }
+    @media(max-width:620px){
+      .container{width:min(100% - 24px,var(--container))}section{padding:78px 0}.hero{padding:58px 0 64px}h1{font-size:clamp(2.85rem,15vw,4.25rem)}h2{font-size:clamp(2rem,10vw,3rem)}
+      .brand{min-width:auto}.brand img{width:50px;height:50px}.brand-name{font-size:.9rem}.brand-name small{display:none}
+      .trust-strip{margin-top:-18px}.trust-grid,.card-grid,.steps,.trans-grid,.amounts,.metrics,.faq-grid,.facts,.form-row,.footer-grid{grid-template-columns:1fr}.trust-item{border-right:0!important;border-bottom:1px solid var(--line)}.trust-item:last-child{border-bottom:0}.trans-card:last-child,.footer-grid>div:first-child{grid-column:auto}
+      .hero-actions .btn,.contact-actions .btn{width:100%}.hero-panel{padding:20px;border-radius:24px}.hero-logo{padding:0 8px 18px}.hero-logo img{width:300px}
+      .step{min-height:auto}.donate-box{padding:26px 20px}.form-card{padding:22px 18px}.contact-meta{display:grid;gap:8px}.float-wa{right:14px;bottom:14px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.btn,.amount{transition:none}}
+  </style>
+<script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"NonprofitOrganization",
+    "name":"Fundación de Desarrollo Integral Fuente de Agua Viva",
+    "alternateName":"Fuente de Agua Viva",
+    "identifier":"RUC 0993352527001",
+    "foundingDate":"2021-07-21",
+    "email":"fundacionfuentedeaguaviva21@gmail.com",
+    "telephone":"+5939991856794",
+    "address":{"@type":"PostalAddress","addressLocality":"Guayaquil","addressRegion":"Guayas","addressCountry":"EC"},
+    "areaServed":"Ecuador",
+    "description":"Organización de desarrollo integral orientada al acceso a agua potable, vivienda digna y fortalecimiento comunitario para población en situación de vulnerabilidad."
+  }
+  </script>
+<link href="https://www.fuentedeaguaviva.online/" rel="canonical"/><meta content="website" property="og:type"/><meta content="es_EC" property="og:locale"/><meta content="Fundación Fuente de Agua Viva | Agua, vivienda y desarrollo comunitario" property="og:title"/><meta content="Fundación ecuatoriana que impulsa soluciones de agua potable, vivienda digna y fortalecimiento comunitario." property="og:description"/><meta content="https://www.fuentedeaguaviva.online/" property="og:url"/><meta content="https://www.fuentedeaguaviva.online/assets/og-fuente-agua-viva.png" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="Fundación Fuente de Agua Viva" name="twitter:title"/><meta content="Agua potable, vivienda digna y desarrollo comunitario en Ecuador." name="twitter:description"/><meta content="https://www.fuentedeaguaviva.online/assets/og-fuente-agua-viva.png" name="twitter:image"/><link href="site.webmanifest" rel="manifest"/><link href="assets/logo-icon.png" rel="apple-touch-icon"/><style>
+.tech-gallery{background:linear-gradient(180deg,#F7FBFC 0%,#FFFFFF 100%)}
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px}
+.tech-card{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+.tech-img-btn{display:block;width:100%;border:0;padding:0;background:#EAF8FC;cursor:zoom-in;overflow:hidden}
+.tech-img-btn img{width:100%;aspect-ratio:16/10;object-fit:cover;transition:transform .25s ease}
+.tech-img-btn:hover img{transform:scale(1.02)}
+.tech-card figcaption{display:grid;gap:5px;padding:18px 20px}.tech-card figcaption strong{color:var(--blue-deep)}.tech-card figcaption span{font-size:.9rem;color:var(--muted)}
+.project-note{margin-top:22px;padding:16px 18px;border:1px solid #E5D88D;background:#FFF9DD;border-radius:16px;color:#66520B;font-size:.9rem}
+.site-lightbox{position:fixed;inset:0;background:rgba(3,27,35,.92);z-index:200;display:none;align-items:center;justify-content:center;padding:30px}.site-lightbox.open{display:flex}.site-lightbox img{max-width:min(1200px,94vw);max-height:88vh;border-radius:14px;background:white;box-shadow:0 30px 80px rgba(0,0,0,.35)}.site-lightbox button{position:absolute;top:18px;right:20px;width:46px;height:46px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:white;border-radius:50%;font-size:1.5rem}
+.footer-grid{grid-template-columns:1.6fr 1fr 1fr 1fr}
+@media(max-width:980px){.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}}
+@media(max-width:700px){.tech-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.footer-grid>div:first-child{grid-column:auto}}
+</style></head>
+<body>
+<div class="topbar">
+<div class="container">
+<span><strong>Fundación de Desarrollo Integral Fuente de Agua Viva</strong> · Ecuador</span>
+<span>RUC 0993352527001 · Constituida en 2021</span>
+</div>
+</div>
+<header>
+<div class="container">
+<nav aria-label="Navegación principal">
+<a aria-label="Fuente de Agua Viva - Inicio" class="brand" href="#inicio">
+<img alt="Símbolo de Fuente de Agua Viva" src="assets/logo-icon.png"/>
+<span class="brand-name">Fuente de Agua Viva<small>Desarrollo integral · asistencia social</small></span>
+</a>
+<div class="nav-links" id="navLinks">
+<a href="#nosotros">Nosotros</a>
+<a href="#programas">Qué hacemos</a>
+<a href="#proyecto">Proyecto Los Ríos</a>
+<a href="#transparencia">Transparencia</a>
+<a href="#solicitar">Solicitar evaluación</a>
+<a class="btn btn-green" href="#donar">Donar ahora</a>
+</div>
+<button aria-expanded="false" aria-label="Abrir menú" class="menu-btn" id="menuBtn">☰</button>
+</nav>
+</div>
+</header>
+<main>
+<section class="hero" id="inicio">
+<div class="container hero-grid">
+<div class="hero-copy reveal">
+<div class="eyebrow">Agua · vivienda · comunidad</div>
+<h1>Agua que transforma <span>comunidades.</span></h1>
+<p>Impulsamos soluciones integrales para comunidades en situación de vulnerabilidad en Ecuador: acceso a agua potable, vivienda digna y fortalecimiento de capacidades para que cada proyecto pueda sostenerse en el tiempo.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#donar">Quiero apoyar</a>
+<a class="btn btn-outline" href="#solicitar">Mi comunidad necesita agua</a>
+</div>
+<div aria-label="Principios de trabajo" class="hero-proof">
+<span class="proof-chip"><i>✓</i> Enfoque comunitario</span>
+<span class="proof-chip"><i>✓</i> Planificación técnica</span>
+<span class="proof-chip"><i>✓</i> Transparencia</span>
+</div>
+</div>
+<div aria-label="Identidad de la Fundación" class="hero-panel reveal">
+<div class="hero-logo"><img alt="Logo completo de Fundación Fuente de Agua Viva" src="assets/logo.png"/></div>
+<div class="hero-panel-note">
+<strong>Una misión dual: agua segura + vivienda digna</strong>
+<p>El acceso al agua es un punto de partida para mejorar salud, bienestar, seguridad y oportunidades de desarrollo.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="trust-strip">
+<div class="container trust-grid reveal">
+<div class="trust-item"><span class="trust-icon">💧</span><div><strong>Agua potable</strong><span>Pozos y almacenamiento</span></div></div>
+<div class="trust-item"><span class="trust-icon">🏠</span><div><strong>Vivienda digna</strong><span>Soluciones habitacionales</span></div></div>
+<div class="trust-item"><span class="trust-icon">🤝</span><div><strong>Gestión comunitaria</strong><span>Participación y capacitación</span></div></div>
+<div class="trust-item"><span class="trust-icon">📋</span><div><strong>Transparencia</strong><span>Metas y proyectos identificados</span></div></div>
+</div>
+</div>
+<section id="nosotros">
+<div class="container about-grid">
+<div class="reveal">
+<div class="eyebrow">Quiénes somos</div>
+<h2>Desarrollo integral con el agua como eje de transformación.</h2>
+<p class="lead">Fuente de Agua Viva orienta su trabajo a población y comunidades en situación de vulnerabilidad, combinando infraestructura social con participación comunitaria.</p>
+<p>Nuestra prioridad es convertir necesidades concretas en proyectos técnicamente planificados, socialmente útiles y sostenibles. El enfoque une dos ejes centrales: <strong>agua potable</strong> y <strong>vivienda digna</strong>, complementados con formación, alianzas y acompañamiento.</p>
+<div aria-label="Datos institucionales" class="facts">
+<div class="fact"><b>0993352527001</b><span>RUC institucional</span></div>
+<div class="fact"><b>Guayaquil</b><span>Domicilio institucional</span></div>
+<div class="fact"><b>2021</b><span>Año de constitución</span></div>
+<div class="fact"><b>Ing. Nelson Ochoa Guzmán</b><span>Representante legal</span></div>
+</div>
+</div>
+<aside class="mission-card reveal">
+<span class="badge badge-green">Propósito institucional</span>
+<h3 style="margin-top:18px">Misión</h3>
+<p>Transformar vidas a través del acceso a agua potable y viviendas dignas para comunidades vulnerables en Ecuador.</p>
+<div class="divider"></div>
+<h3>Visión</h3>
+<p>Lograr un impacto positivo y sostenible en las comunidades ecuatorianas, elevando su calidad de vida mediante soluciones integrales de agua potable y vivienda digna.</p>
+</aside>
+</div>
+</section>
+<section class="programs" id="programas">
+<div class="container">
+<div class="section-head reveal">
+<div class="eyebrow">Qué hacemos</div>
+<h2>Infraestructura que funciona. Comunidades que pueden sostenerla.</h2>
+<p class="lead">La infraestructura es esencial, pero la sostenibilidad depende también de organización, mantenimiento y apropiación comunitaria.</p>
+</div>
+<div class="card-grid">
+<article class="program-card reveal">
+<div class="icon">01</div>
+<h3>Pozos profundos y tanques elevados</h3>
+<p>Evaluación de necesidades, estudios técnicos, perforación, bombeo y almacenamiento para acercar agua segura a comunidades que hoy enfrentan limitaciones de acceso.</p>
+<div class="mini">AGUA · INFRAESTRUCTURA · SEGURIDAD</div>
+</article>
+<article class="program-card reveal">
+<div class="icon">02</div>
+<h3>Vivienda digna</h3>
+<p>Propuestas de vivienda de interés social pensadas para mejorar seguridad, habitabilidad y resiliencia de familias en situación de vulnerabilidad.</p>
+<div class="mini">HOGAR · PROTECCIÓN · DIGNIDAD</div>
+</article>
+<article class="program-card reveal">
+<div class="icon">03</div>
+<h3>Gestión y capacitación comunitaria</h3>
+<p>Formación para fortalecer la operación, administración y mantenimiento de los sistemas, con participación de comités y liderazgos locales.</p>
+<div class="mini">CAPACIDADES · MANTENIMIENTO · SOSTENIBILIDAD</div>
+</article>
+<article class="program-card reveal">
+<div class="icon">04</div>
+<h3>Alianzas para el desarrollo</h3>
+<p>Articulación con gobiernos locales, empresas, donantes y profesionales para combinar recursos, conocimiento técnico y participación comunitaria.</p>
+<div class="mini">GAD · EMPRESAS · DONANTES · VOLUNTARIADO</div>
+</article>
+</div>
+</div>
+</section>
+<section class="method" id="metodo">
+<div class="container">
+<div class="section-head reveal">
+<div class="eyebrow">Cómo trabajamos</div>
+<h2>Del diagnóstico a una solución que la comunidad pueda cuidar.</h2>
+<p>El proceso se adapta a cada territorio, a la disponibilidad de la fuente, a los permisos aplicables y a las condiciones sociales de la comunidad.</p>
+</div>
+<div class="steps">
+<article class="step reveal"><span class="num">1</span><h3>Priorización</h3><p>Identificamos necesidad, población, ubicación, acceso actual al agua y nivel de vulnerabilidad.</p></article>
+<article class="step reveal"><span class="num">2</span><h3>Estudios</h3><p>Se plantean evaluaciones hidrogeológicas y geofísicas cuando corresponda para reducir incertidumbre técnica.</p></article>
+<article class="step reveal"><span class="num">3</span><h3>Diseño y permisos</h3><p>Se define la solución, presupuesto y ruta regulatoria según las exigencias aplicables en Ecuador.</p></article>
+<article class="step reveal"><span class="num">4</span><h3>Ejecución</h3><p>Perforación, instalación del sistema de bombeo, almacenamiento y obras complementarias.</p></article>
+<article class="step reveal"><span class="num">5</span><h3>Capacitación</h3><p>La comunidad recibe orientación para administración, operación y mantenimiento del sistema.</p></article>
+<article class="step reveal"><span class="num">6</span><h3>Seguimiento</h3><p>Se promueve mantenimiento preventivo, documentación y coordinación con actores locales.</p></article>
+</div>
+</div>
+</section>
+<section class="project" id="proyecto">
+<div class="container project-wrap">
+<div class="project-copy reveal">
+<span class="badge badge-warning">Proyecto en formulación · sujeto a financiamiento</span>
+<div class="eyebrow" style="margin-top:24px">Provincia de Los Ríos</div>
+<h2>Hogares y Agua para la Vida</h2>
+<p class="lead">Una propuesta humanitaria integral para intervenir comunidades priorizadas con vivienda digna, pozos profundos, tanques elevados y capacitación comunitaria.</p>
+<div class="project-alert">Estas cifras son <strong>metas y estimaciones de la propuesta</strong>. No representan obras ya ejecutadas ni beneficiarios ya atendidos.</div>
+<div aria-label="Metas propuestas del proyecto" class="metrics">
+<div class="metric"><b>10</b><span>comunidades priorizadas</span></div>
+<div class="metric"><b>100</b><span>viviendas propuestas</span></div>
+<div class="metric"><b>20</b><span>pozos + tanques propuestos</span></div>
+<div class="metric"><b>+3.000</b><span>personas a beneficiar</span></div>
+<div class="metric"><b>30</b><span>meses de duración estimada</span></div>
+<div class="metric"><b>USD 6,42 M</b><span>presupuesto total estimado</span></div>
+</div>
+<p class="fine"><strong>Ámbito propuesto:</strong> comunidades priorizadas de la provincia de Los Ríos.</p>
+
+<div aria-label="Objetivos de Desarrollo Sostenible relacionados" class="ods-row">
+<span class="ods"><b>ODS 1</b> Fin de la pobreza</span>
+<span class="ods"><b>ODS 6</b> Agua limpia y saneamiento</span>
+<span class="ods"><b>ODS 11</b> Comunidades sostenibles</span>
+</div>
+</div>
+<figure class="plan-card reveal">
+<img alt="Plano referencial de vivienda de interés social de Fuente de Agua Viva" loading="lazy" src="assets/vivienda-plano.jpg"/>
+<figcaption class="plan-caption"><strong>Diseño referencial de vivienda de interés social</strong><span>Plano arquitectónico incluido en la documentación técnica de la Fundación. Su ejecución final depende de estudios, terreno, permisos y financiamiento.</span></figcaption>
+</figure>
+</div>
+</section><section class="tech-gallery" id="documentacion">
+<div class="container">
+<div class="section-head reveal">
+<div class="eyebrow">Documentación técnica</div>
+<h2>Diseños referenciales del componente de vivienda.</h2>
+<p class="lead">Material técnico incluido en la documentación del proyecto. Se presenta como referencia de diseño y no como evidencia de una obra ya ejecutada.</p>
+</div>
+<div class="tech-grid">
+<figure class="tech-card reveal">
+<button aria-label="Ampliar plano arquitectónico" class="tech-img-btn" data-lightbox="assets/vivienda-plano.jpg" type="button">
+<img alt="Plano arquitectónico referencial de vivienda de interés social" loading="lazy" src="assets/vivienda-plano.jpg"/>
+</button>
+<figcaption><strong>Planta arquitectónica y elevaciones</strong><span>Diseño referencial de vivienda de interés social.</span></figcaption>
+</figure>
+<figure class="tech-card reveal">
+<button aria-label="Ampliar plano de instalaciones" class="tech-img-btn" data-lightbox="assets/vivienda-instalaciones.jpg" type="button">
+<img alt="Plano técnico referencial de instalaciones de vivienda" loading="lazy" src="assets/vivienda-instalaciones.jpg"/>
+</button>
+<figcaption><strong>Instalaciones y detalles técnicos</strong><span>Documento de apoyo sujeto a estudios, permisos y condiciones del sitio.</span></figcaption>
+</figure>
+</div>
+<div class="project-note reveal"><strong>Nota de transparencia:</strong> las imágenes técnicas anteriores son material referencial. Los resultados ejecutados deben publicarse únicamente con evidencia verificable de ubicación, fecha, obra y beneficiarios.</div>
+</div>
+</section>
+<section class="transparency" id="transparencia">
+<div class="container">
+<div class="section-head reveal">
+<div class="eyebrow">Transparencia institucional</div>
+<h2>Confianza basada en información clara.</h2>
+<p>Publicamos la información institucional esencial y diferenciamos con claridad entre proyectos ejecutados, proyectos en formulación y metas futuras.</p>
+</div>
+<div class="trans-grid">
+<article class="trans-card reveal">
+<span class="badge badge-blue">Identidad jurídica</span>
+<h3 style="margin-top:18px">Fundación registrada en Ecuador</h3>
+<div class="trans-list">
+<div class="trans-row"><span>Razón social</span><b>Fundación de Desarrollo Integral Fuente de Agua Viva</b></div>
+<div class="trans-row"><span>RUC</span><div class="copyline"><b>0993352527001</b><button class="copy-btn" data-copy="0993352527001">Copiar</button></div></div>
+<div class="trans-row"><span>Estado</span><b>Activo</b></div>
+<div class="trans-row"><span>Constitución</span><b>21/07/2021</b></div>
+<div class="trans-row"><span>Representante legal</span><b>Ing. Nelson Ochoa Guzmán</b></div>
+</div>
+</article>
+<article class="trans-card reveal">
+<span class="badge badge-green">Documentación</span>
+<h3 style="margin-top:18px">Información disponible para aliados</h3>
+<p>La Fundación cuenta con documentación institucional como RUC y estatutos. Para procesos de debida diligencia, convenios o alianzas, puede solicitarse la documentación pertinente al equipo institucional.</p>
+<a class="link" href="mailto:fundacionfuentedeaguaviva21@gmail.com?subject=Solicitud%20de%20documentaci%C3%B3n%20institucional">Solicitar documentación →</a>
+</article>
+<article class="trans-card reveal">
+<span class="badge badge-blue">Cifras responsables</span>
+<h3 style="margin-top:18px">Metas no son lo mismo que resultados</h3>
+<p>En esta web las cifras del proyecto de Los Ríos aparecen como <strong>propuestas</strong>. Los resultados de proyectos ejecutados deben incorporarse únicamente cuando exista evidencia verificable de obra, ubicación, fecha y beneficiarios.</p>
+<p class="fine">Este criterio evita presentar estimaciones como impacto alcanzado y fortalece la confianza de donantes y aliados.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="donate" id="donar">
+<div class="container">
+<div class="donate-box reveal">
+<div>
+<div class="eyebrow">Haz posible una solución</div>
+<h2>Tu aporte puede convertirse en agua, vivienda y capacidad comunitaria.</h2>
+<p>Elige un monto de donación mediante los enlaces institucionales de PayPhone o realiza una transferencia a la cuenta de la Fundación.</p>
+<div aria-label="Montos de donación PayPhone" class="amounts">
+<a class="amount" href="https://ppls.me/6lKmqHjRfKzwMTIibMuEQ" rel="noopener noreferrer" target="_blank"><div><strong>$10</strong><span>Aporte solidario</span></div><b aria-hidden="true">→</b></a>
+<a class="amount" href="https://ppls.me/PQxjudGuyCFuMhwYNTNFbg" rel="noopener noreferrer" target="_blank"><div><strong>$30</strong><span>Aporte solidario</span></div><b aria-hidden="true">→</b></a>
+<a class="amount" href="https://ppls.me/EJrrqUoezXljRxeTLAvTPQ" rel="noopener noreferrer" target="_blank"><div><strong>$50</strong><span>Aporte solidario</span></div><b aria-hidden="true">→</b></a>
+<a class="amount" href="https://ppls.me/EwuFMm4UZgNQqMqlc4iSsA" rel="noopener noreferrer" target="_blank"><div><strong>$100</strong><span>Aporte solidario</span></div><b aria-hidden="true">→</b></a>
+<a class="amount" href="https://ppls.me/WTAnKBOkV0StctNWtwYvg" rel="noopener noreferrer" style="grid-column:1/-1" target="_blank"><div><strong>$1.000</strong><span>Aporte de mayor impacto</span></div><b aria-hidden="true">→</b></a>
+</div>
+<p class="fine" style="margin-top:14px">Los botones abren PayPhone en una nueva pestaña. Verifica siempre que el monto y el destinatario sean correctos antes de confirmar.</p>
+</div>
+<aside aria-label="Datos bancarios para donación por transferencia" class="bank-box">
+<span class="badge badge-green">Transferencia bancaria</span>
+<h3 style="font-size:1.65rem;margin-top:18px">Banco Pichincha</h3>
+<p>Cuenta institucional para aportes por transferencia.</p>
+<div class="bank-line"><span>Tipo</span><b>Cuenta corriente empresarial</b></div>
+<div class="bank-line"><span>N.º de cuenta</span><div class="copyline"><b>2100250033</b><button class="copy-btn" data-copy="2100250033">Copiar</button></div></div>
+<div class="bank-line"><span>Beneficiario</span><b>Fundación de Desarrollo Integral Fuente de Agua Viva</b></div>
+<div class="bank-line"><span>RUC</span><b>0993352527001</b></div>
+<div class="security-note">Por seguridad, la Fundación no necesita que compartas contraseñas, claves bancarias ni códigos de verificación para recibir una donación.</div>
+</aside>
+</div>
+</div>
+</section>
+<section class="request" id="solicitar">
+<div class="container request-grid">
+<aside class="request-aside reveal">
+<div class="eyebrow">Solicitud comunitaria</div>
+<h2>¿Tu comunidad necesita una solución de agua?</h2>
+<p>Comparte información inicial para que el equipo pueda conocer el caso. El envío del formulario <strong>no implica aprobación automática</strong>; sirve como primer contacto para evaluación.</p>
+<div class="check-list">
+<div class="check"><i>✓</i><span>Identifica provincia, cantón, parroquia y sector.</span></div>
+<div class="check"><i>✓</i><span>Indica población aproximada y fuente actual de agua.</span></div>
+<div class="check"><i>✓</i><span>Describe el problema y la urgencia principal.</span></div>
+<div class="check"><i>✓</i><span>Incluye un contacto comunitario responsable.</span></div>
+</div>
+</aside>
+<div class="form-card reveal">
+<form id="communityForm">
+<div class="form-row">
+<label>Nombre de la comunidad / organización<input autocomplete="organization" name="community" placeholder="Ej. Comunidad San José" required=""/></label>
+<label>Provincia<input name="province" placeholder="Ej. Los Ríos" required=""/></label>
+</div>
+<div class="form-row">
+<label>Cantón<input name="canton" placeholder="Ej. Ventanas" required=""/></label>
+<label>Parroquia / sector<input name="parish" placeholder="Parroquia o recinto"/></label>
+</div>
+<div class="form-row">
+<label>Población aproximada<input inputmode="numeric" name="population" placeholder="Ej. 450 personas"/></label>
+<label>Fuente actual de agua<select name="source"><option value="">Selecciona una opción</option><option>Pozo existente</option><option>Río / estero</option><option>Tanqueros</option><option>Red pública intermitente</option><option>Otra</option></select></label>
+</div>
+<label>Describe la necesidad<textarea name="need" placeholder="Cuéntanos cómo se abastecen actualmente, qué problema enfrentan y desde cuándo." required=""></textarea></label>
+<div class="form-row">
+<label>Nombre del contacto<input autocomplete="name" name="contact" placeholder="Nombre y apellido" required=""/></label>
+<label>Teléfono / WhatsApp<input autocomplete="tel" name="phone" placeholder="Ej. 09... / +593..." required=""/></label>
+</div>
+<label>Correo del contacto<input autocomplete="email" name="email" placeholder="correo@ejemplo.com" type="email"/></label>
+<button class="btn btn-primary" type="submit">Preparar solicitud por correo</button>
+<p class="fine">Este sitio estático no almacena tus datos. Al enviar, se abrirá tu aplicación de correo con la información preparada para que tú confirmes el envío.</p>
+<div class="status" id="formStatus" role="status"></div>
+</form>
+</div>
+</div>
+</section>
+<section id="faq">
+<div class="container">
+<div class="section-head reveal"><div class="eyebrow">Preguntas frecuentes</div><h2>Información rápida para comunidades y donantes.</h2></div>
+<div class="faq-grid">
+<details class="reveal"><summary>¿Solicitar un pozo significa que será construido?</summary><p>No. La solicitud es un primer paso. La viabilidad depende de priorización social, estudios del sitio, condiciones técnicas, permisos, disponibilidad de recursos y alianzas.</p></details>
+<details class="reveal"><summary>¿Cómo puedo donar?</summary><p>Puedes usar los enlaces institucionales de PayPhone incluidos en esta página o realizar una transferencia a la cuenta corriente empresarial de Banco Pichincha indicada en la sección de donaciones.</p></details>
+<details class="reveal"><summary>¿Puedo apoyar como empresa o profesional?</summary><p>Sí. La Fundación contempla alianzas con gobiernos locales, empresas, donantes y profesionales técnicos. Escríbenos indicando el tipo de aporte, servicio o colaboración que puedes ofrecer.</p></details>
+<details class="reveal"><summary>¿Dónde puedo verificar la información institucional?</summary><p>La web muestra el RUC y datos básicos. Para convenios, cooperación o debida diligencia, solicita la documentación institucional pertinente por correo electrónico.</p></details>
+</div>
+</div>
+</section>
+<section class="contact" id="contacto">
+<div class="container reveal">
+<div class="eyebrow">Hablemos</div>
+<h2>Una comunidad, una alianza o una donación pueden empezar con un mensaje.</h2>
+<p>Contacta a Fundación Fuente de Agua Viva para solicitar información, presentar una necesidad comunitaria, proponer una alianza o conocer formas de colaborar.</p>
+<div class="contact-actions">
+<a class="btn btn-light" href="mailto:fundacionfuentedeaguaviva21@gmail.com">Escribir por correo</a>
+<a class="btn btn-green" href="https://wa.me/5939991856794?text=Hola%20Fundaci%C3%B3n%20Fuente%20de%20Agua%20Viva%2C%20quiero%20recibir%20informaci%C3%B3n." rel="noopener noreferrer" target="_blank">Hablar por WhatsApp</a>
+</div>
+<div class="contact-meta">
+<span>Correo: <a href="mailto:fundacionfuentedeaguaviva21@gmail.com">fundacionfuentedeaguaviva21@gmail.com</a></span>
+<span>Ubicación institucional: Guayaquil, Ecuador</span>
+<span>RUC: 0993352527001</span>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div>
+<div class="footer-brand"><img alt="" src="assets/logo-icon.png"/><strong>Fundación de Desarrollo Integral<br/>Fuente de Agua Viva</strong></div>
+<p>Agua potable, vivienda digna, fortalecimiento comunitario y alianzas para impulsar soluciones sostenibles en Ecuador.</p>
+</div>
+<div><h4>Navegación</h4><div class="footer-links"><a href="#nosotros">Nosotros</a><a href="#programas">Qué hacemos</a><a href="#proyecto">Proyecto Los Ríos</a><a href="#transparencia">Transparencia</a><a href="#donar">Donar</a></div></div>
+<div><h4>Contacto</h4><div class="footer-links"><a href="mailto:fundacionfuentedeaguaviva21@gmail.com">Correo institucional</a><a href="https://wa.me/5939991856794" rel="noopener noreferrer" target="_blank">WhatsApp</a><a href="#solicitar">Solicitud comunitaria</a><span>Guayaquil · Ecuador</span></div></div>
+<div><h4>Legal y privacidad</h4><div class="footer-links"><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Política de privacidad</a><a href="#transparencia">Transparencia institucional</a></div></div></div>
+<div class="footer-bottom"><span>© <span id="year"></span> Fundación Fuente de Agua Viva. Todos los derechos reservados.</span><span>Las cifras del proyecto Los Ríos corresponden a una propuesta en formulación, no a resultados ejecutados.</span></div>
+</div>
+</footer>
+<a aria-label="Contactar por WhatsApp" class="float-wa" href="https://wa.me/5939991856794?text=Hola%20Fundaci%C3%B3n%20Fuente%20de%20Agua%20Viva" rel="noopener noreferrer" target="_blank">WA</a>
+<script>
+    const menuBtn=document.getElementById('menuBtn');
+    const navLinks=document.getElementById('navLinks');
+    menuBtn?.addEventListener('click',()=>{
+      const open=navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded',String(open));
+      menuBtn.textContent=open?'✕':'☰';
+    });
+    navLinks?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+      navLinks.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰';
+    }));
+
+    const io=('IntersectionObserver' in window)?new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');io.unobserve(entry.target)}});
+    },{threshold:.08}):null;
+    document.querySelectorAll('.reveal').forEach(el=>io?io.observe(el):el.classList.add('visible'));
+
+    document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{
+      const original=btn.textContent;
+      try{await navigator.clipboard.writeText(btn.dataset.copy);btn.textContent='Copiado';}
+      catch(e){btn.textContent=btn.dataset.copy;}
+      setTimeout(()=>btn.textContent=original,1500);
+    }));
+
+    document.getElementById('communityForm')?.addEventListener('submit',e=>{
+      e.preventDefault();
+      const d=new FormData(e.currentTarget);
+      const subject='Solicitud comunitaria de evaluación de agua - '+(d.get('community')||'Comunidad');
+      const body=[
+        'SOLICITUD COMUNITARIA - FUENTE DE AGUA VIVA','',
+        'Comunidad / organización: '+(d.get('community')||''),
+        'Provincia: '+(d.get('province')||''),
+        'Cantón: '+(d.get('canton')||''),
+        'Parroquia / sector: '+(d.get('parish')||''),
+        'Población aproximada: '+(d.get('population')||''),
+        'Fuente actual de agua: '+(d.get('source')||''),'',
+        'Necesidad descrita:',(d.get('need')||''),'',
+        'Contacto: '+(d.get('contact')||''),
+        'Teléfono / WhatsApp: '+(d.get('phone')||''),
+        'Correo: '+(d.get('email')||'')
+      ].join('\n');
+      const href='mailto:fundacionfuentedeaguaviva21@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+      const status=document.getElementById('formStatus');
+      status.style.display='block';
+      status.textContent='Listo. Se abrirá tu aplicación de correo para que revises y confirmes el envío.';
+      window.location.href=href;
+    });
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+<div aria-hidden="true" class="site-lightbox" id="siteLightbox"><button aria-label="Cerrar imagen" type="button">×</button><img alt="Vista ampliada" src=""/></div><script>
+(() => {
+  const lb=document.getElementById('siteLightbox');
+  if(!lb) return;
+  const img=lb.querySelector('img');
+  const close=()=>{lb.classList.remove('open');lb.setAttribute('aria-hidden','true');img.src='';};
+  document.querySelectorAll('[data-lightbox]').forEach(btn=>btn.addEventListener('click',()=>{
+    img.src=btn.dataset.lightbox; lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+  }));
+  lb.querySelector('button').addEventListener('click',close);
+  lb.addEventListener('click',e=>{if(e.target===lb) close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape') close();});
+})();
+</script></body>
+</html>

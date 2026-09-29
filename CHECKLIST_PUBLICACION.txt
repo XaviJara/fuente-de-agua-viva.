@@ -1,0 +1,15 @@
+CHECKLIST DE PUBLICACIÓN — FUENTE DE AGUA VIVA
+==============================================
+
+1. Abrir index.html localmente y revisar textos.
+2. Probar menú en celular y escritorio.
+3. Probar todos los botones PayPhone sin completar el pago.
+4. Probar WhatsApp y correo institucional.
+5. Confirmar datos bancarios e institucionales.
+6. Confirmar que las cifras del Proyecto Los Ríos siguen siendo propuesta en formulación.
+7. Publicar en el hosting gratuito.
+8. Revisar la URL temporal.
+9. Conectar el dominio www.fuentedeaguaviva.online.
+10. Activar HTTPS y comprobar que el candado aparezca correctamente.
+11. Probar nuevamente todos los enlaces desde el dominio final.
+12. Conservar una copia del ZIP como respaldo.

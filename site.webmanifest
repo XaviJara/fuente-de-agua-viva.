@@ -1,0 +1,9 @@
+{
+  "name": "Fundación Fuente de Agua Viva",
+  "short_name": "Fuente de Agua Viva",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0099CC",
+  "icons": [{"src":"assets/logo-icon.png","sizes":"512x512","type":"image/png"}]
+}
